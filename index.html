@@ -31,28 +31,31 @@
       <!-- end of nav -->
       <h1>Tic Tac Toe: Pan Dulce Edition</h1>
 
-      <h2>Who's turn is it:</h2>
-      <p></p>
-
-      <h2>Who Won:</h2>
-      <p></p>
+      <div id="turn">
+        <h2>Who's turn is it:</h2>
+        <p id="turn-message"></p>
+    </div>
+      <div  id="won">
+        <h2>Who Won:</h2>
+        <p id="won-message"></p>
+    </div>
 
       <!-- Board game -->
-      <div class="row">
+      <div class="container game">
         <!-- first row -->
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
+        <div class="col-xs-4 box gameboard" id="0"></div>
+        <div class="col-xs-4 box gameboard" id="1"></div>
+        <div class="col-xs-4 box gameboard" id="2"></div>
         <!-- end of first row -->
         <!-- second row -->
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
+        <div class="col-xs-4 box gameboard" id="3"></div>
+        <div class="col-xs-4 box gameboard" id="4"></div>
+        <div class="col-xs-4 box gameboard" id="5"></div>
         <!-- end of second row -->
         <!-- third row -->
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
-        <div class="col-xs-6 col-md-4 box">.col-xs-6 .col-md-4</div>
+        <div class="col-xs-4 box gameboard" id="6"></div>
+        <div class="col-xs-4 box gameboard" id="7"></div>
+        <div class="col-xs-4 box gameboard" id="8"></div>
         <!-- end of third row -->
         <!-- End of board game -->
 
