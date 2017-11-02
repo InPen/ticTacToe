@@ -28,7 +28,7 @@ I'm implementing:
 
 ## Wireframes
 
-`git@github.com:InPen/ticTacToe.git`
+`https://inpen.github.io/ticTacToe/`
 
 ## User Stories - What A User Could Expect From The Game:
 
