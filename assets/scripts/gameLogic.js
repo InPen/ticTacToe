@@ -1,4 +1,3 @@
-const index = require('./index')
 const gameBoard = ['', '', '', '', '', '', '', '', '']
 let turn = concha
 
@@ -12,6 +11,10 @@ function (id clicked on html) {
     element.addClass('o')
   }
 }
+
+$('.box').on('click', function () {
+  console.log('Hi')
+})
 
 navigating in the array and cell coordinates
 .lenght
