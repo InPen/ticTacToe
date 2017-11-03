@@ -1,10 +1,19 @@
-const str = []
-const x = concha
-const o = churro
+const index = require('./index')
+const gameBoard = ['', '', '', '', '', '', '', '', '']
+let turn = concha
+
 // choosing a cell pseudo code
+function (id clicked on html) {
+  if (playerOne) {
+    // gets clicked on html
+    element.addClass('x')
+  } else {
+    // gets clicked on html
+    element.addClass('o')
+  }
+}
 
-
-// navigating in the array and cell coordinates
+navigating in the array and cell coordinates
 .lenght
 // x clicks on cell
 .on
@@ -40,3 +49,7 @@ console.log('Churros wins!')
 if no cells match in a row
 then its a draw
 console.log('Nadie wins :/')
+
+module.exports = {
+  onClick
+}
