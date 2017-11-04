@@ -1,58 +1,47 @@
-const gameBoard = ['', '', '', '', '', '', '', '', '']
-let turn = concha
+'use strict'
+// const store = require('./store')
+// const gameBoard = ['', '', '', '', '', '', '', '', '']
 
-// choosing a cell pseudo code
-function (id clicked on html) {
-  if (playerOne) {
-    // gets clicked on html
-    element.addClass('x')
-  } else {
-    // gets clicked on html
-    element.addClass('o')
-  }
-}
-
-$('.box').on('click', function () {
-  console.log('Hi')
+$('#cellZero').click(function () {
+  console.log('hi')
 })
+// choosing a cell pseudo code
+// function (id clicked on html) {
+//   if (playerOne) {
+//     // gets clicked on html
+//     element.addClass('x')
+//   } else {
+//     // gets clicked on html
+//     element.addClass('o')
+//   }
+// }
+//
+// $('.box').on('click', function () {
+//   console.log('Hi')
+// })
 
-navigating in the array and cell coordinates
-.lenght
-// x clicks on cell
-.on
-// cell goes from blank to display x
-if concha === true
-console.log('x')
-// turn switches
-array refreshes but knows of the occupied cell
-// o clicks on cell
-.on
-// cell changes from blank to display o
-else if console.log('o')
-// turn switches
-array refreshes but knows of the occupied cell
-// if user clicks on an occupied cell
-else console.log("don't be shellFish! That cell has already been used :P")
-
-
-// winning x | o code
-
-
-// if x wins
-if 3 cells in a row match x
-then x wins
-console.log('Concha wins!')
-
-// if o wins
-if 3 cells in a row match o
-then o wins
-console.log('Churros wins!')
-
-// else if draw
-if no cells match in a row
-then its a draw
-console.log('Nadie wins :/')
-
-module.exports = {
-  onClick
-}
+// Entities:
+// Board:
+// Cell
+//     - untaken
+//     - taken by person (X/O)
+// Persons
+// Status on page
+//     - who's turn
+//     - if someone has won
+//
+//
+// Interactions:
+// Person clicks on Cell
+//     - How do we know when a person has clicked on a cell?  what is the JS for this
+//     - Cell is empty
+//         How do we check if the cell is empty?
+//         - Person's marker appears
+//         - check for win
+//             - if win
+//                 do things
+//             - if not
+//                 - Switch to next person
+//     - Cell is taken
+//         - nothing happens
+// new game
