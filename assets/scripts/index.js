@@ -8,23 +8,68 @@ $(() => {
   setAPIOrigin(location, config)
 })
 let currentPlayer = 'x'
+const boardArray = ['', '', '', '', '', '', '', '', '']
 
 $('.box').click(function (event) {
-  $(event.target).text()
-  console.log($(event.target).text())
-  $(event.target).text(currentPlayer)
-  switchPlayer()
+  console.log('boardArray is ', boardArray)
+  if ($(event.target).text()) {
+    console.log('click me')
+  } else {
+    $(event.target).text(currentPlayer)
+    console.log('don/t click me')
+  }
+
+  // Update the HTML board with the user's token X or
+
+  // Get the position of the board that the user clicked
+  // position is saved on HTML data-index of element
+  const position = $(event.target).data('index')
+
+  console.log('boardArray[position] is: ', boardArray[position])
+  console.log('currentPlayer is: ', currentPlayer)
+  // Add player token to boardArray at the position they chose
+  if (boardArray[position] === currentPlayer || boardArray[position] === currentPlayer) {
+    console.log('it was true')
+  } else {
+    boardArray[position] = currentPlayer
+    console.log('boardArray[position] is', boardArray[position])
+  }
+  // check winner
+  if (checkWinner()) {
+    console.log('fart is the winner')
+  } else {
+    switchPlayer()
+  } // returns "X", "O", "Tie" or false
 })
 
-// target cell we click on to change text
+// target cell we click on to switch turns
 
-function switchPlayer () {
+const switchPlayer = function () {
   if (currentPlayer === 'x') {
-    console.log('hi')
+    console.log('x')
     currentPlayer = 'o'
-    console.log('bye')
+    console.log('o')
   } else {
     currentPlayer = 'x'
+  }
+}
+
+// check the board for a winner
+// if we find a winner then return "X" or "O"
+// if all board spaces are taken then return "Tie"
+// if nobody won yet then return false
+const checkWinner = function () {
+  // checks if winner 0, 1, 2
+// x                x   = true              x
+  if (boardArray[0] === boardArray[1] && boardArray[1] === boardArray[2]) {
+    return boardArray[0] // X or O
+
+  // check if winner 3,4,5
+  } else if ((boardArray[3] === boardArray[4] && boardArray[4] === boardArray[5]) ||
+           (boardArray[6] === boardArray[7] && boardArray[7] === boardArray[8])) {
+    console.log('you win!')
+  } else {
+    console.log('no one won and game continues')
   }
 }
 
