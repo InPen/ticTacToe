@@ -28,7 +28,7 @@ $('.box').click(function (event) {
   console.log('boardArray[position] is: ', boardArray[position])
   console.log('currentPlayer is: ', currentPlayer)
   // Add player token to boardArray at the position they chose
-  if (boardArray[position] === currentPlayer || boardArray[position] === currentPlayer) {
+  if (boardArray[position] === 'x' || boardArray[position] === 'o') {
     console.log('it was true')
   } else {
     boardArray[position] = currentPlayer
