@@ -58,7 +58,6 @@ const switchPlayer = function () {
 }
 
 // check the board for a winner
-// if we find a winner then return "X" or "O"
 // if all board spaces are taken then return "Tie"
 // if nobody won yet then return false
 const checkWinner = function () {
@@ -70,20 +69,18 @@ const checkWinner = function () {
 
   // check if winner 3,4,5
   } else if ((boardArray[3] === boardArray[4] && boardArray[4] === boardArray[5]) ||
-           (boardArray[6] === boardArray[7] && boardArray[7] === boardArray[8])) {
+           (boardArray[6] === boardArray[7] && boardArray[7] === boardArray[8]) ||
+           (boardArray[0] === boardArray[3] && boardArray[3] === boardArray[6]) ||
+           (boardArray[1] === boardArray[4] && boardArray[4] === boardArray[7]) ||
+           (boardArray[2] === boardArray[5] && boardArray[5] === boardArray[8]) ||
+           (boardArray[0] === boardArray[4] && boardArray[4] === boardArray[8]) ||
+           (boardArray[2] === boardArray[4] && boardArray[4] === boardArray[6])) {
     console.log('you win!')
   } else {
     console.log('no one won and game continues')
   }
 }
 
-// invoke function everytime the user clicks
-// function that switches between x and o
-// $( event.target );
-//   if ( target.is( "li" ) ) {
-//     target.children().toggle();
-//   }
-// }
 // $(() => {
 //   events.addHandlers()
 // })
