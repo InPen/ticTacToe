@@ -13,14 +13,25 @@ const boardArray = ['', '', '', '', '', '', '', '', '']
 $('.box').click(function (event) {
   console.log('boardArray is ', boardArray)
   if ($(event.target).text()) {
-    console.log('click me')
+    console.log('ALREADY SELECTED')
   } else {
     $(event.target).text(currentPlayer)
-    console.log('don/t click me')
+    checkWinner()
+    updateArray()
+    switchPlayer()
   }
 
   // Update the HTML board with the user's token X or
+  // // check winner
+  // if (checkWinner()) {
+  //   console.log('fart is the winner')
+  // } else{
+  //   switchPlayer()
+  // } // returns "X", "O", "Tie" or false
+})
 
+// target cell we click on to switch turns
+const updateArray = function () {
   // Get the position of the board that the user clicked
   // position is saved on HTML data-index of element
   const position = $(event.target).data('index')
@@ -34,15 +45,7 @@ $('.box').click(function (event) {
     boardArray[position] = currentPlayer
     console.log('boardArray[position] is', boardArray[position])
   }
-  // check winner
-  if (checkWinner()) {
-    console.log('fart is the winner')
-  } else {
-    switchPlayer()
-  } // returns "X", "O", "Tie" or false
-})
-
-// target cell we click on to switch turns
+}
 
 const switchPlayer = function () {
   if (currentPlayer === 'x') {
@@ -62,6 +65,7 @@ const checkWinner = function () {
   // checks if winner 0, 1, 2
 // x                x   = true              x
   if (boardArray[0] === boardArray[1] && boardArray[1] === boardArray[2]) {
+    console.log('You win')
     return boardArray[0] // X or O
 
   // check if winner 3,4,5
