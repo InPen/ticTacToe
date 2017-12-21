@@ -1,12 +1,21 @@
 'use strict'
-
+// use require with a reference to bundle the file and use it in this file
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
-// const events = require('./auth/events')
+const authEvents = require('./auth/events.js')
+// How to properly require gameLogic???
 // const gameLogic = require('assets/scripts/gameLogic')
+
 $(() => {
   setAPIOrigin(location, config)
 })
+
+$(() => {
+  authEvents.addHandlers()
+  // gameLogicEvents.addHandlers()
+})
+
+// Game Logic begins
 let currentPlayer = 'x'
 const boardArray = ['', '', '', '', '', '', '', '', '']
 
@@ -80,16 +89,3 @@ const checkWinner = function () {
     console.log('no one won and game continues')
   }
 }
-
-// $(() => {
-//   events.addHandlers()
-// })
-
-// $(() => {
-//   gameLogic.addHandlers()
-// })
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example')
-
-// use require without a reference to ensure a file is bundled
-// require('./example')
