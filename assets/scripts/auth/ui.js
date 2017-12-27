@@ -4,7 +4,7 @@ const store = require('../store')
 
 const signUpSuccess = function (data) {
   $('.sign-auth-message').text('A huevo! Please sign in >_<')
-  $('.signup-instruciones').text('A huevo! Please sign in >_<')
+  $('.signup-instruciones').text('')
   $('.signup').hide()
   $('#sign-up').trigger('reset')
   // console.log(data)
@@ -18,11 +18,15 @@ const signUpFailure = function () {
 
 const signInSuccess = function (response) {
   $('.signin-auth-message').text('Let\'s PLAY!')
-  $('signin-instruciones').text('Let\'s PLAY! Haz Click en "New Game"')
+  $('signin-instruciones').text('Click New Game to begin!')
   store.user = response.user
   // console.log('signIn success ran. data is :', response)
   $('.signin').hide()
   $('.signup').hide()
+  $('.changepassword').show()
+  $('.signout').show()
+  $('.gamebutton').show()
+  $('#sign-in').trigger('reset')
 }
 
 const signInFailure = function () {
@@ -45,16 +49,21 @@ const changePasswordFailure = function () {
 }
 
 const signOutSuccess = function () {
-  $('#message').text('Signed out successfully')
-  $('#message').css('background-color', 'green')
-  console.log('signOut success ran. and nothing was returned')
   store.user = null
+  $('.signout-auth-message').text('Signed out successfully')
+  $('.changepassword').hide()
+  $('.signin').show()
+  $('#sign-in').trigger('reset')
+  $('.signup').show()
+  $('.signout').hide()
+  $('.gamebutton').hide()
+  $('.container-fluid').hide()
+  // console.log('signOut success ran. and nothing was returned')
 }
 
-const signOutFailure = function (error) {
-  $('#message').text('Error on sign out')
-  $('#message').css('background-color', 'red')
-  console.log('signOut failure ran. error is :', error)
+const signOutFailure = function () {
+  $('.signout-auth-message').text('Unable to sign out :(')
+  // console.log('signOut failure ran. error is :', error)
 }
 
 module.exports = {

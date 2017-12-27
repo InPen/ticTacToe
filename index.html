@@ -18,7 +18,7 @@
   <nav>
 
       <!-- sign up -->
-      <div class="signup nav">
+      <div class="signup">
         <form id="sign-up">
             <h2>Sign up!</h2>
             <input type="text" name="credentials[email]" placeholder="Email">
@@ -31,7 +31,7 @@
       </div>
 
       <!-- sign in -->
-      <div class="signin nav">
+      <div class="signin">
         <form id="sign-in">
             <h2>Sign in!</h2>
             <input type="text" name="credentials[email]" placeholder="Email">
@@ -43,7 +43,7 @@
       </div>
 
       <!-- change password -->
-      <div class="changepassword nav">
+      <div class="changepassword">
         <form id="change-password">
             <h2>Change Password!</h2>
             <input type="password" name="passwords[old]" placeholder="Old Password">
@@ -55,13 +55,12 @@
       </div>
 
       <!-- log out -->
-      <div class="nav-item">
+      <div class="signout">
         <form id="sign-out">
-          <fieldset>
-            <legend>Sign Out!</legend>
-            <input type="submit" name="submit" value="Sign out!">
-          </fieldset>
+            <h2>Sign Out!</h2>
+            <button type="submit" class="btn btn-default">Sign Out</button>
         </form>
+        <p class="signout-auth-message"></p>
       </div>
   </nav>
 
@@ -107,7 +106,7 @@
     <!-- End of board game -->
 
     <!-- New game button -->
-  <div class="nuevo-game">
+  <div class="gamebutton">
     <form id="new-game">
       <button type="submit" class="btn btn-default rightside">New Game</button>
     </form>
