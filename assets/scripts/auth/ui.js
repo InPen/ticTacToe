@@ -32,15 +32,16 @@ const signInFailure = function () {
 }
 
 const changePasswordSuccess = function () {
-  $('#message').text('Changed password successfully')
-  $('#message').css('background-color', 'green')
-  console.log('changePassword success ran. and nothing was returned')
+  $('.cp-auth-message').text('You have a new password ;)')
+  $('.changepassword').hide()
+  $('#change-password').trigger('reset')
+  // console.log('changePassword success ran. and nothing was returned')
 }
 
-const changePasswordFailure = function (error) {
-  $('#message').text('Error on change password')
-  $('#message').css('background-color', 'red')
-  console.log('changePassword failure ran. error is :', error)
+const changePasswordFailure = function () {
+  $('.cp-instruciones').text('Uummm, looks like your words don\'t match carnal')
+  $('#change-password').trigger('reset')
+  // console.log('changePassword failure ran. error is :', error)
 }
 
 const signOutSuccess = function () {
