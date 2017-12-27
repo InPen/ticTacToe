@@ -16,22 +16,20 @@
 <body class="container-fluid">
   <!-- beginning of nav -->
   <nav>
-    <ul class="nav justify-content-center">
+
       <!-- sign up -->
-      <li class="nav-item">
+      <div class="signup nav">
         <form id="sign-up">
-          <fieldset>
-            <legend>Sign up!</legend>
+            <h2>Sign up!</h2>
             <input type="text" name="credentials[email]" placeholder="Email">
             <input type="password" name="credentials[password]" placeholder="Password">
             <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-            <input type="submit" name="submit" value="Sign up!">
-          </fieldset>
+            <button type="submit" class="btn btn-default">Sign Up!</button>
         </form>
-      </li>
+      </div>
 
       <!-- sign in -->
-      <li class="nav-item">
+      <div class="nav-item">
         <form id="sign-in">
           <fieldset>
             <legend>Sign in!</legend>
@@ -40,10 +38,10 @@
             <input type="submit" name="submit" value="Sign in!">
           </fieldset>
         </form>
-      </li>
+      </div>
 
       <!-- change password -->
-      <li class="nav-item">
+      <div class="nav-item">
         <form id="change-password">
           <fieldset>
             <legend>Change Password!</legend>
@@ -52,21 +50,21 @@
             <input type="submit" name="submit" value="Change Password!">
           </fieldset>
         </form>
-      </li>
+      </div>
 
       <!-- log out -->
-      <li class="nav-item">
+      <div class="nav-item">
         <form id="sign-out">
           <fieldset>
             <legend>Sign Out!</legend>
             <input type="submit" name="submit" value="Sign out!">
           </fieldset>
         </form>
-      </li>
-    </ul>
+      </div>
   </nav>
 
   <!-- end of nav -->
+
   <img src="assets/styles/img/picado.png" alt="Papel Picado">
   <h1 class="title">Tic Tac Toe: Pan Dulce Edition</h1>
 
@@ -107,7 +105,14 @@
     <!-- End of board game -->
 
     <!-- New game button -->
-    <button type="button" class="btn btn-primary btn-lg">New Game</button>
+  <div class="nuevo-game">
+    <form id="new-game">
+      <button type="submit" class="btn btn-default rightside">New Game</button>
+    </form>
+    <form id="games-played">
+      <button type="submit" class="btn btn-default rightside">Games Played</button>
+    </form>
+  </div>
     <!-- end new game button  -->
   </div>
 </body>

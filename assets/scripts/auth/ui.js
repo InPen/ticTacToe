@@ -3,11 +3,16 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  console.log(data)
+  $('.auth-message').text('A huevo! Please sign in now')
+  $('.signup').hide()
+  $('#sign-up').trigger('reset')
+  // console.log(data)
 }
 
-const signUpFailure = function (error) {
-  console.error(error)
+const signUpFailure = function () {
+  $('.auth-message').text('Did not sign up correctly, try again')
+  $('#sign-up').trigger('reset')
+  // console.error(error)
 }
 
 const signInSuccess = function (response) {
