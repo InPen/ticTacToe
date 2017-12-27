@@ -3,29 +3,32 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  $('.auth-message').text('A huevo! Please sign in now')
+  $('.sign-auth-message').text('A huevo! Please sign in >_<')
+  $('.signup-instruciones').text('A huevo! Please sign in >_<')
   $('.signup').hide()
   $('#sign-up').trigger('reset')
   // console.log(data)
 }
 
 const signUpFailure = function () {
-  $('.auth-message').text('Did not sign up correctly, try again')
+  $('.sign-auth-message').text('Did not sign up correctly, try again :p')
   $('#sign-up').trigger('reset')
   // console.error(error)
 }
 
 const signInSuccess = function (response) {
-  $('#message').text('Signed in successfully')
-  $('#message').css('background-color', 'green')
-  console.log('signIn success ran. data is :', response)
+  $('.signin-auth-message').text('Let\'s PLAY!')
+  $('signin-instruciones').text('Let\'s PLAY! Haz Click en "New Game"')
   store.user = response.user
+  // console.log('signIn success ran. data is :', response)
+  $('.signin').hide()
+  $('.signup').hide()
 }
 
-const signInFailure = function (error) {
-  $('#message').text('Error on sign in')
-  $('#message').css('background-color', 'red')
-  console.log('signIn failure ran. error is :', error)
+const signInFailure = function () {
+  $('.signin-auth-message').text('Oopsy daisies, did you forget your pw, bruh?')
+  $('#sign-in').trigger('reset')
+  // console.log('signIn failure ran. error is :', error)
 }
 
 const changePasswordSuccess = function () {
