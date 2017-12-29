@@ -6,6 +6,11 @@ const signUpSuccess = function (data) {
   $('.sign-auth-message').text('A huevo! Please sign in >_<')
   $('.signup-instruciones').text('')
   $('.signup').hide()
+  $('.changepassword').hide()
+  $('.signout').hide()
+  $('.turn').hide()
+  $('.won').hide()
+  $('.game-container').hide()
   $('#sign-up').trigger('reset')
   // console.log(data)
 }
@@ -25,7 +30,9 @@ const signInSuccess = function (response) {
   $('.signup').hide()
   $('.changepassword').show()
   $('.signout').show()
-  $('.gamebutton').show()
+  $('.turn').show()
+  $('.won').show()
+  $('.game-container').show()
   $('#sign-in').trigger('reset')
 }
 
@@ -56,8 +63,9 @@ const signOutSuccess = function () {
   $('#sign-in').trigger('reset')
   $('.signup').show()
   $('.signout').hide()
-  $('.gamebutton').hide()
-  $('.container-fluid').hide()
+  $('.turn').hide()
+  $('.won').hide()
+  $('.game-container').hide()
   // console.log('signOut success ran. and nothing was returned')
 }
 
