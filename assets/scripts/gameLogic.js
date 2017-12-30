@@ -2,6 +2,10 @@
 const gameCrud = require('./gameCrud')
 const store = require('./store')
 
+const boardArray = ['', '', '', '', '', '', '', '', '']
+let numCell = 0
+let player = 'x'
+
 const gameBoard = {
   board: {
     cell: {
@@ -13,7 +17,7 @@ const gameBoard = {
 
 const checkWinner = function (boardArray, player) {
   if (gameBoard.game.over === false) {
-    if (// check for parallel wins
+    if (// check for vertical wins
       (boardArray[0] === player && boardArray[3] === player && boardArray[6] === player) ||
       (boardArray[1] === player && boardArray[4] === player && boardArray[7] === player) ||
       (boardArray[2] === player && boardArray[5] === player && boardArray[8] === player) ||
@@ -21,11 +25,20 @@ const checkWinner = function (boardArray, player) {
       (boardArray[0] === player && boardArray[1] === player && boardArray[2] === player) ||
       (boardArray[3] === player && boardArray[4] === player && boardArray[5] === player) ||
       (boardArray[6] === player && boardArray[7] === player && boardArray[8] === player) ||
-    // check for cris cros wins
+    // check for diagonal wins
       (boardArray[0] === player && boardArray[4] === player && boardArray[8] === player) ||
       (boardArray[2] === player && boardArray[4] === player && boardArray[6] === player)) {
-      $('#won-message').text('Player ' + 'Wins!')
+      $('#user-message').text('Player ' + 'Wins!')
       gameBoard.game.over = true
+      gameCrud.updateGame(gameBoard)
+    } else if (numCell === 9) {
+      $('#user-message').text('D R A W')
+      gameBoard.game.over = true
+      gameCrud.updateGame(gameBoard)
+    } else if (numCell % 2 === 0) {
+      $('#user-message').text('x turn')
+    } else if (numCell % 2 === 1) {
+      $('#user-message').text('o turn')
     }
   }
 }
