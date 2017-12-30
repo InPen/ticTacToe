@@ -19,6 +19,9 @@ $(() => {
 let currentPlayer = 'x'
 const boardArray = ['', '', '', '', '', '', '', '', '']
 
+// Mama function that sorta exports all other functions
+// we need to name it and change how it's beind defined
+// so we can call on it on our CRUD actions
 $('.box').click(function (event) {
   console.log('boardArray is ', boardArray)
   if ($(event.target).text()) {
@@ -29,6 +32,17 @@ $('.box').click(function (event) {
     updateArray()
     switchPlayer()
   }
+
+  // const game = function (event) {
+  //   console.log('boardArray is ', boardArray)
+  //   if ($(event.target).text()) {
+  //     console.log('ALREADY SELECTED')
+  //   } else {
+  //     $(event.target).text(currentPlayer)
+  //     checkWinner()
+  //     updateArray()
+  //     switchPlayer()
+  //   }
 
   // Update the HTML board with the user's token X or
   // // check winner
@@ -89,3 +103,10 @@ const checkWinner = function () {
     console.log('no one won and game continues')
   }
 }
+
+// module.exports = {
+//   game,
+//   checkWinner,
+//   updateArray,
+//   switchPlayer
+// }
