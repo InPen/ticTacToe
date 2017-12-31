@@ -1,6 +1,68 @@
 'use strict'
 const gameCrud = require('./gameCrud')
+const gameUi = require('./gameUi')
 const store = require('./store')
+
+
+Before game starts:
+
+  pick a first player
+    - let currentPlayer = 'x'
+  Define event handler
+    - $('.box').click(function (event)
+
+On each turn:
+
+  Tell users whose turn it is
+    - $('#player_display').text(current_player)
+  Show user the board
+    - html shown
+  user selects a place to put symbol
+    - wait for user to click
+
+  check that space hasn't been taken
+    - check if coordinate has value
+      - $(event.target).text())
+    - if yes
+      - $('.error-box').text('that space has been taken')
+    - if no (else):
+      mark spaces
+      updateDom()
+        $(event.target).text(currentPlayer)
+      check for win
+      checkWinner()
+        - compare spaces in all win conditions
+        def vertical(board)
+    $('#cellZero').text() == $('#cellFour').text() && $('#cellZero').text() == $('#cellEight').text() && $('#cellZero').text() !== '' ||
+
+  end
+        if win condition
+          - tell user they won
+          - end game
+            $('.box').off('click')
+      elseif check for draw
+        - no empty spaces on board
+        $('#cellZero').text() == '' || $('#cellFour').text() == ''
+        if draw
+          - tell the user it was a tie
+          - game over:
+            $('.box').off('click')
+      else switch players
+      switchPlayer()
+      const switchPlayer = function () {
+        if (currentPlayer === 'x') {
+          console.log('x')
+          currentPlayer = 'o'
+          console.log('o')
+        } else {
+          currentPlayer = 'x'
+        }
+      }
+
+
+
+
+// old game logic
 
 const boardArray = ['', '', '', '', '', '', '', '', '']
 let numCell = 0
@@ -42,35 +104,6 @@ const checkWinner = function (boardArray, player) {
     }
   }
 }
-//   // checks if winner 0, 1, 2
-// // x                x   = true              x
-//   if  {
-//     console.log('You win')
-//     return boardArray[0] // X or O
-//
-//   // check if winner 3,4,5
-//   } else  {
-//     console.log('you win!')
-//   } else {
-//     console.log('no one won and game continues')
-//   }
-// }
-
-// target cell we click on to switch turns
-// const updateArray = function (event) {
-//   if (gameBoard)
-//   const position = $(event.target).data('index')
-//
-//   console.log('boardArray[position] is: ', boardArray[position])
-//   console.log('currentPlayer is: ', currentPlayer)
-//   // Add player token to boardArray at the position they chose
-//   if (boardArray[position] === 'x' || boardArray[position] === 'o') {
-//     console.log('it was true')
-//   } else {
-//     boardArray[position] = currentPlayer
-//     console.log('boardArray[position] is', boardArray[position])
-//   }
-// }
 
 module.exports = {
   gameBoard,

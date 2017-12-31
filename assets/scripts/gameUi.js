@@ -1,78 +1,43 @@
 'use strict'
 
-const store = require('../store')
+const store = require('./store')
 
-const signUpSuccess = function (data) {
-  $('.sign-auth-message').text('A huevo! Please sign in >_<')
-  $('.signup-instruciones').text('')
-  $('.signup').hide()
-  $('#sign-up').trigger('reset')
+const newGameSuccess = function (data) {
+  store.game = data.game
   // console.log(data)
 }
 
-const signUpFailure = function () {
-  $('.sign-auth-message').text('Did not sign up correctly, try again :p')
-  $('#sign-up').trigger('reset')
+const newGameFailure = function () {
+  $('').text('Could not create a new game')
   // console.error(error)
 }
 
-const signInSuccess = function (response) {
-  $('.signin-auth-message').text('Let\'s PLAY!')
-  $('signin-instruciones').text('Click New Game to begin!')
-  store.user = response.user
-  // console.log('signIn success ran. data is :', response)
-  $('.signin').hide()
-  $('.signup').hide()
-  $('.changepassword').show()
-  $('.signout').show()
-  $('.gamebutton').show()
-  $('#sign-in').trigger('reset')
-}
+// const updateGameSuccess = function (response) {
+//   store.user = response.user
+//   // console.log('signIn success ran. data is :', response)
+// }
 
-const signInFailure = function () {
-  $('.signin-auth-message').text('Oopsy daisies, did you forget your pw, bruh?')
-  $('#sign-in').trigger('reset')
+const updateGameFailure = function () {
+  $('').text('Game did not update')
   // console.log('signIn failure ran. error is :', error)
 }
 
-const changePasswordSuccess = function () {
-  $('.cp-auth-message').text('You have a new password ;)')
-  $('.changepassword').hide()
-  $('#change-password').trigger('reset')
+const allGamesSuccess = function (data) {
+  const allGames = data.games.lenght
+  $('').text('You have played ' + allGames)
   // console.log('changePassword success ran. and nothing was returned')
 }
 
-const changePasswordFailure = function () {
-  $('.cp-instruciones').text('Uummm, looks like your words don\'t match carnal')
-  $('#change-password').trigger('reset')
+const allGamesFailure = function () {
+  $('').text('Could not get all your games')
   // console.log('changePassword failure ran. error is :', error)
 }
 
-const signOutSuccess = function () {
-  store.user = null
-  $('.signout-auth-message').text('Signed out successfully')
-  $('.changepassword').hide()
-  $('.signin').show()
-  $('#sign-in').trigger('reset')
-  $('.signup').show()
-  $('.signout').hide()
-  $('.gamebutton').hide()
-  $('.container-fluid').hide()
-  // console.log('signOut success ran. and nothing was returned')
-}
-
-const signOutFailure = function () {
-  $('.signout-auth-message').text('Unable to sign out :(')
-  // console.log('signOut failure ran. error is :', error)
-}
-
 module.exports = {
-  signUpSuccess,
-  signUpFailure,
-  signInSuccess,
-  signInFailure,
-  changePasswordSuccess,
-  changePasswordFailure,
-  signOutSuccess,
-  signOutFailure
+  newGameSuccess,
+  newGameFailure,
+  // updateGameSuccess,
+  updateGameFailure,
+  allGamesSuccess,
+  allGamesFailure
 }
