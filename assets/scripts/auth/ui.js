@@ -55,9 +55,7 @@ const signOutSuccess = function () {
   $('.signin').show()
   $('#sign-in').trigger('reset')
   $('.signup').show()
-  $('.signout').hide()
-  $('.gamebutton').hide()
-  $('.container-fluid').hide()
+  $('.game-container').hide()
   // console.log('signOut success ran. and nothing was returned')
 }
 

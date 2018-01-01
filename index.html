@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Do not add `link` tags-->
-  <link rel="shortcut icon" type="image/x-icon" href="assets/styles/img/concha.png">
+  <link rel="shortcut icon" type="image/x-icon" href="assets/styles/img/picado.png">
 
   <!-- Do not add `script` tags-->
   <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
@@ -16,31 +16,6 @@
 <body class="container-fluid">
   <!-- beginning of nav -->
   <nav>
-
-      <!-- sign up -->
-      <div class="signup">
-        <form id="sign-up">
-            <h2>Sign up!</h2>
-            <input type="text" name="credentials[email]" placeholder="Email">
-            <input type="password" name="credentials[password]" placeholder="Password">
-            <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-            <button type="submit" class="btn btn-default">Sign Up!</button>
-        </form>
-        <p class="sign-auth-message"></p>
-        <p class="signup-instruciones"></p>
-      </div>
-
-      <!-- sign in -->
-      <div class="signin">
-        <form id="sign-in">
-            <h2>Sign in!</h2>
-            <input type="text" name="credentials[email]" placeholder="Email">
-            <input type="password" name="credentials[password]" placeholder="Password">
-            <button type="submit" class="btn btn-default">Sign In!</button>
-        </form>
-        <p class="signin-auth-message"></p>
-        <p class="signin-instruciones"></p>
-      </div>
 
       <!-- change password -->
       <div class="changepassword">
@@ -69,11 +44,45 @@
   <img src="assets/styles/img/picado.png" alt="Papel Picado">
   <h1 class="title">Tic Tac Toe: Pan Dulce Edition</h1>
 
-  <div class="turn">
-    <h2 id="turn-message"></h2>
+  <!-- sign up -->
+  <div class="signup">
+    <form id="sign-up">
+        <h2>Sign up!</h2>
+        <input type="text" name="credentials[email]" placeholder="Email">
+        <input type="password" name="credentials[password]" placeholder="Password">
+        <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+        <button type="submit" class="btn btn-default">Sign Up!</button>
+    </form>
+    <p class="sign-auth-message"></p>
+    <p class="signup-instruciones"></p>
   </div>
-  <div class="won">
+
+  <!-- sign in -->
+  <div class="signin">
+    <form id="sign-in">
+        <h2>Sign in!</h2>
+        <input type="text" name="credentials[email]" placeholder="Email">
+        <input type="password" name="credentials[password]" placeholder="Password">
+        <button type="submit" class="btn btn-default">Sign In!</button>
+    </form>
+    <p class="signin-auth-message"></p>
+    <p class="signin-instruciones"></p>
+  </div>
+
+  <div class="instruction">
     <h2 id="user-message"></h2>
+  </div>
+
+  <div class="err-message">
+    <h2 id="err"></h2>
+  </div>
+
+  <div class="turn">
+    <h2 id="turn"></h2>
+  </div>
+
+  <div class="won">
+    <h2 id="won"></h2>
   </div>
 
   <!-- Board game -->
@@ -108,7 +117,7 @@
     <form id="new-game">
       <button type="submit" class="btn btn-default rightside">New Game</button>
     </form>
-    <form id="games-played">
+    <form id="allGames">
       <button type="submit" class="btn btn-default rightside">Games Played</button>
     </form>
   </div>

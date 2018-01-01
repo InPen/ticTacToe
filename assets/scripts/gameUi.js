@@ -24,7 +24,7 @@ const updateGameFailure = function () {
 
 const allGamesSuccess = function (data) {
   const allGames = data.games.lenght
-  $('').text('You have played ' + allGames)
+  $('').text('You have played ', allGames)
   // console.log('changePassword success ran. and nothing was returned')
 }
 
