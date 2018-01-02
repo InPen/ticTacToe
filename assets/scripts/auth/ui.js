@@ -2,69 +2,73 @@
 
 const store = require('../store')
 
+// how to prevent cp and log out from appearing when page loads
+const loadSuccess = function () {
+  $('.changepassword').hide()
+  $('.signout').hide()
+}
+
 const signUpSuccess = function (data) {
-  $('.sign-auth-message').text('A huevo! Please sign in >_<')
-  $('.signup-instruciones').text('')
+  $('.signup-message').text('Welcome! Please sign in')
   $('.signup').hide()
   $('#sign-up').trigger('reset')
   // console.log(data)
 }
 
 const signUpFailure = function () {
-  $('.sign-auth-message').text('Did not sign up correctly, try again :p')
+  $('.signup-message').text('Did not sign up correctly, try again')
   $('#sign-up').trigger('reset')
   // console.error(error)
 }
 
 const signInSuccess = function (response) {
-  $('.signin-auth-message').text('Let\'s PLAY!')
-  $('signin-instruciones').text('Click New Game to begin!')
+  $('.signin-message').text('Let\'s PLAY!')
   store.user = response.user
   // console.log('signIn success ran. data is :', response)
   $('.signin').hide()
   $('.signup').hide()
   $('.changepassword').show()
   $('.signout').show()
-  $('.gamebutton').show()
   $('#sign-in').trigger('reset')
 }
 
 const signInFailure = function () {
-  $('.signin-auth-message').text('Oopsy daisies, did you forget your pw, bruh?')
+  $('.signin-message').text('Oopsy daisies, did you forget your pw?')
   $('#sign-in').trigger('reset')
   // console.log('signIn failure ran. error is :', error)
 }
 
 const changePasswordSuccess = function () {
-  $('.cp-auth-message').text('You have a new password ;)')
+  $('.cp-message').text('You have a new password!')
   $('.changepassword').hide()
   $('#change-password').trigger('reset')
   // console.log('changePassword success ran. and nothing was returned')
 }
 
 const changePasswordFailure = function () {
-  $('.cp-instruciones').text('Uummm, looks like your words don\'t match carnal')
+  $('.cp-message').text('Looks like your passwords don\'t match')
   $('#change-password').trigger('reset')
   // console.log('changePassword failure ran. error is :', error)
 }
 
 const signOutSuccess = function () {
   store.user = null
-  $('.signout-auth-message').text('Signed out successfully')
+  $('.signout-message').text('Bye!')
   $('.changepassword').hide()
+  $('.signup').show()
   $('.signin').show()
   $('#sign-in').trigger('reset')
-  $('.signup').show()
   $('.game-container').hide()
   // console.log('signOut success ran. and nothing was returned')
 }
 
 const signOutFailure = function () {
-  $('.signout-auth-message').text('Unable to sign out :(')
+  $('.signout-message').text('Unable to sign out')
   // console.log('signOut failure ran. error is :', error)
 }
 
 module.exports = {
+  loadSuccess,
   signUpSuccess,
   signUpFailure,
   signInSuccess,

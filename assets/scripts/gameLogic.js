@@ -3,50 +3,82 @@ const gameCrud = require('./gameCrud')
 const gameUi = require('./gameUi')
 const store = require('./store')
 
+let currentPlayer = 'x'
 const board = ['', '', '', '', '', '', '', '', '']
-let numCell = 0
-let player = 'x'
 
-const gameBoard = {
-  board: {
-    cell: {
-      index: null,
-      player: 'x'
-    }
+// Mama function that sorta exports all other functions
+// we need to name it and change how it's beind defined
+// so we can call on it on our CRUD actions
+$('.box').click(function (event) {
+  console.log('board is ', board)
+  if ($(event.target).text()) {
+    console.log('ALREADY SELECTED')
+  } else {
+    $(event.target).text(currentPlayer)
+    updateCell()
+    checkWinner()
+    switchPlayer()
+    // checkDraw()
+  }
+})
+
+// target cell user clicks on to switch turns
+const updateCell = function () {
+  // Get the position of the board that the user clicked
+  const position = $(event.target).data('index')
+  // position is saved on HTML data-index of element
+  console.log('currentPlayer is: ', currentPlayer)
+  // Add player token to board at the position they chose
+  if (board[position] === 'x' || board[position] === 'o') {
+  } else {
+    board[position] = currentPlayer
+    // instead of using console, try to target cell using jquery
+    console.log('board[position] is', board[position])
   }
 }
 
-const checkWinner = function (board, player) {
-  if (gameBoard.game.over === false) {
-    if (// check for vertical wins
-      (board[0] === player && board[3] === player && board[6] === player) ||
-      (board[1] === player && board[4] === player && board[7] === player) ||
-      (board[2] === player && board[5] === player && board[8] === player) ||
-    // check for horizontal wins
-      (board[0] === player && board[1] === player && board[2] === player) ||
-      (board[3] === player && board[4] === player && board[5] === player) ||
-      (board[6] === player && board[7] === player && board[8] === player) ||
-    // check for diagonal wins
-      (board[0] === player && board[4] === player && board[8] === player) ||
-      (board[2] === player && board[4] === player && board[6] === player)) {
-      $('#user-message').text('Player ' + 'Wins!')
-      gameBoard.game.over = true
-      gameCrud.updateGame(gameBoard)
-    } else if (numCell === 9) {
-      $('#user-message').text('D R A W')
-      gameBoard.game.over = true
-      gameCrud.updateGame(gameBoard)
-    } else if (numCell % 2 === 0) {
-      $('#user-message').text('x turn')
-    } else if (numCell % 2 === 1) {
-      $('#user-message').text('o turn')
-    }
+const switchPlayer = function () {
+  if (currentPlayer === 'x') {
+    // instead of using console, try to target cell using jquery
+    console.log('x')
+    currentPlayer = 'o'
+    // instead of using console, try to target cell using jquery
+    console.log('o')
+  } else {
+    currentPlayer = 'x'
   }
 }
 
-module.exports = {
-  gameBoard,
-  checkWinner
-  // updateArray,
-  // switchPlayer
+// check the board for a winner
+const checkWinner = function () {
+// x                x   = true              x
+  if (// check for vertical wins
+    (board[0] === currentPlayer && board[3] === currentPlayer && board[6] === currentPlayer) ||
+  (board[1] === currentPlayer && board[4] === currentPlayer && board[7] === currentPlayer) ||
+  (board[2] === currentPlayer && board[5] === currentPlayer && board[8] === currentPlayer) ||
+  // check for horizontal wins
+  (board[0] === currentPlayer && board[1] === currentPlayer && board[2] === currentPlayer) ||
+  (board[3] === currentPlayer && board[4] === currentPlayer && board[5] === currentPlayer) ||
+  (board[6] === currentPlayer && board[7] === currentPlayer && board[8] === currentPlayer) ||
+  // check for diagonal wins
+  (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
+  (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
+    console.log('you win!')
+    // end game
+    $('.box').off('click')
+  // if all spaces have been taken and there is no win then it's a draw
+  } else if (board.lenght === 9) {
+    console.log("It's a draw!")
+    // end game
+    $('.box').off('click')
+  }
 }
+
+// const checkDraw = function () {
+//   // if all spaces have been taken and there is no win then it's a draw
+//   if (board.lenght === 9) {
+//     console.log("I'ts a draw")
+//     // end game
+//     $('.box').off('click')
+//   }
+// }
