@@ -17,12 +17,14 @@ $(() => {
 
 // Game Logic begins
 let currentPlayer = 'x'
+let count = 0
 const board = ['', '', '', '', '', '', '', '', '']
 
 // Mama function that sorta exports all other functions
 // we need to name it and change how it's beind defined
 // so we can call on it on our CRUD actions
 $('.box').click(function (event) {
+  count++
   console.log('board is ', board)
   if ($(event.target).text()) {
     console.log('ALREADY SELECTED')
@@ -50,6 +52,16 @@ const updateCell = function () {
   }
 }
 
+// const checkDraw = function () {
+//   // if all spaces have been taken and there is no win then it's a draw
+//
+//   if (!($('.box').text() === '' && checkWinner)) {
+//     // end game
+//     $('.box').off('click')
+//     console.log("I'ts a draw")
+//   }
+// }
+
 const switchPlayer = function () {
   if (currentPlayer === 'x') {
     // instead of using console, try to target cell using jquery
@@ -76,22 +88,15 @@ const checkWinner = function () {
   // check for diagonal wins
   (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
   (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
+    $('.box').off('click')
     console.log('you win!')
-    // end game
+  } else if (count === 9) {
+    console.log('DRAW')
     $('.box').off('click')
   // if all spaces have been taken and there is no win then it's a draw
-  } else if (board.lenght === 9) {
-    console.log("It's a draw!")
-    // end game
-    $('.box').off('click')
+  } else {
+    console.log('no one won and game continues')
   }
 }
 
-// const checkDraw = function () {
-//   // if all spaces have been taken and there is no win then it's a draw
-//   if (board.lenght === 9) {
-//     console.log("I'ts a draw")
-//     // end game
-//     $('.box').off('click')
-//   }
-// }
+// module.exports = {checkDraw}
