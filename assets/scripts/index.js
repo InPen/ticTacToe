@@ -31,6 +31,7 @@ $('.box').click(function (event) {
     updateCell()
     checkWinner()
     switchPlayer()
+    // checkDraw()
   }
 })
 
@@ -78,8 +79,19 @@ const checkWinner = function () {
     console.log('you win!')
     // end game
     $('.box').off('click')
-  } else {
-    // check for draws
-    console.log('no one won and game continues')
+  // if all spaces have been taken and there is no win then it's a draw
+  } else if (board.lenght === 9) {
+    console.log("It's a draw!")
+    // end game
+    $('.box').off('click')
   }
 }
+
+// const checkDraw = function () {
+//   // if all spaces have been taken and there is no win then it's a draw
+//   if (board.lenght === 9) {
+//     console.log("I'ts a draw")
+//     // end game
+//     $('.box').off('click')
+//   }
+// }
