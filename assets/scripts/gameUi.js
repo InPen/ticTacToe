@@ -12,10 +12,10 @@ const newGameFailure = function () {
   // console.error(error)
 }
 
-// const updateGameSuccess = function (response) {
-//   store.user = response.user
-//   // console.log('signIn success ran. data is :', response)
-// }
+const updateGameSuccess = function (response) {
+  store.user = response.user
+  // console.log('signIn success ran. data is :', response)
+}
 
 const updateGameFailure = function () {
   $('').text('Game did not update')
@@ -24,7 +24,7 @@ const updateGameFailure = function () {
 
 const allGamesSuccess = function (data) {
   const allGames = data.games.lenght
-  $('').text('You have played ', allGames)
+  $('').text('You have played ' + allGames + ' finished games')
   // console.log('changePassword success ran. and nothing was returned')
 }
 
@@ -36,7 +36,7 @@ const allGamesFailure = function () {
 module.exports = {
   newGameSuccess,
   newGameFailure,
-  // updateGameSuccess,
+  updateGameSuccess,
   updateGameFailure,
   allGamesSuccess,
   allGamesFailure

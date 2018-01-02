@@ -110,15 +110,15 @@
     <!-- End of board game -->
 
     <!-- New game button -->
-  <div class="gamebutton">
-    <form id="new-game">
-      <button type="submit" class="btn btn-default rightside">New Game</button>
+    <form id="new-game" method="POST">
+        <button name="data" type="button" class="btn btn-default">New Game</button>
     </form>
-    <form id="allGames">
-      <button type="submit" class="btn btn-default rightside">Games Played</button>
-    </form>
-  </div>
     <!-- end new game button  -->
+
+    <!-- GET all games button  -->
+    <button id="all-games" class="btn btn-success">Games Played</button>
+    <!-- end of GET all games button  -->
+
   </div>
 </body>
 

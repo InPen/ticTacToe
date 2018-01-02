@@ -22,7 +22,7 @@ const updateGame = function (data) {
     data
   })
 }
-
+// !might be using `'/games?over=true'` wrong
 const allGames = function () {
   return $.ajax({
     url: config.apiOrigin + '/games?over=true',
