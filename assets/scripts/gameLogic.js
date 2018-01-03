@@ -3,6 +3,7 @@
 // const gameUi = require('./gameUi')
 // const store = require('./store')
 
+// Game Logic begins
 let currentPlayer = 'x'
 let count = 0
 const board = ['', '', '', '', '', '', '', '', '']

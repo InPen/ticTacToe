@@ -14,8 +14,34 @@
 </head>
 
 <body class="container-fluid">
+  <img src="assets/styles/img/picado.png" alt="Papel Picado">
+  <h1 class="title">Tic Tac Toe: Pan Dulce Edition</h1>
+
   <!-- beginning of nav -->
   <nav>
+
+    <!-- sign up -->
+    <div class="signup">
+      <form id="sign-up">
+          <h2>Sign up!</h2>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+          <button type="submit" class="btn btn-default">Sign Up!</button>
+      </form>
+      <p class="signup-message"></p>
+    </div>
+
+    <!-- sign in -->
+    <div class="signin">
+      <form id="sign-in">
+          <h2>Sign in!</h2>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <button type="submit" class="btn btn-default">Sign In!</button>
+      </form>
+      <p class="signin-message"></p>
+    </div>
 
       <!-- change password -->
       <div class="changepassword">
@@ -39,32 +65,6 @@
   </nav>
 
   <!-- end of nav -->
-
-  <img src="assets/styles/img/picado.png" alt="Papel Picado">
-  <h1 class="title">Tic Tac Toe: Pan Dulce Edition</h1>
-
-  <!-- sign up -->
-  <div class="signup">
-    <form id="sign-up">
-        <h2>Sign up!</h2>
-        <input type="text" name="credentials[email]" placeholder="Email">
-        <input type="password" name="credentials[password]" placeholder="Password">
-        <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-        <button type="submit" class="btn btn-default">Sign Up!</button>
-    </form>
-    <p class="signup-message"></p>
-  </div>
-
-  <!-- sign in -->
-  <div class="signin">
-    <form id="sign-in">
-        <h2>Sign in!</h2>
-        <input type="text" name="credentials[email]" placeholder="Email">
-        <input type="password" name="credentials[password]" placeholder="Password">
-        <button type="submit" class="btn btn-default">Sign In!</button>
-    </form>
-    <p class="signin-message"></p>
-  </div>
 
   <div class="instructions">
     <h2 id="user-message"></h2>
