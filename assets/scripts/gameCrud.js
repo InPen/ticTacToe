@@ -2,22 +2,23 @@
 const config = require('./config')
 const store = require('./store')
 
-const newGame = function () {
+const newGame = function (data) {
+  console.log(store.user.token)
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'POST',
     headers: {
-      auth: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + store.user.token
     }
   })
 }
 
 const updateGame = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/games' + store.game.id,
+    url: config.apiOrigin + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
-      auth: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + store.user.token
     },
     data
   })
@@ -28,7 +29,7 @@ const allGames = function () {
     url: config.apiOrigin + '/games?over=true',
     method: 'GET',
     headers: {
-      auth: 'Token token=' + store.user.token
+      Authorization: 'Token token=' + store.user.token
     }
   })
 }

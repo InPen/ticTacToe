@@ -5,9 +5,9 @@ const gameCrud = require('./gameCrud')
 const gameUi = require('./gameUi')
 
 const onNewGame = function (event) {
-  const data = getFormFields(this)
+  // const data = getFormFields(this)
   event.preventDefault()
-  gameCrud.newGame(data)
+  gameCrud.newGame()
     .then(gameUi.newGameSuccess)
     .catch(gameUi.newGameFailure)
 }
@@ -24,6 +24,7 @@ const onUpdateGame = function (event) {
 
 const onAllGames = function (event) {
   event.preventDefault()
+  // gameCrud.index()
   console.log('get all games')
 
   // const data = getFormFields(this)
@@ -34,7 +35,7 @@ const onAllGames = function (event) {
 
 const addHandlers = function () {
   $('#new-game').on('click', onNewGame)
-  $('#sign-in').on('submit', onUpdateGame)
+  $('').on('click', onUpdateGame)
   $('#all-games').on('click', onAllGames)
 }
 

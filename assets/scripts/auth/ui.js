@@ -24,6 +24,7 @@ const signUpFailure = function () {
 const signInSuccess = function (response) {
   $('.signin-message').text('Let\'s PLAY!')
   store.user = response.user
+  console.log(store.user.token)
   // console.log('signIn success ran. data is :', response)
   $('.signin').hide()
   $('.signup').hide()
