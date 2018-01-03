@@ -1,6 +1,6 @@
 'use strict'
 
-const getFormFields = require(`../../../lib/get-form-fields`)
+const getFormFields = require(`../../lib/get-form-fields`)
 const gameCrud = require('./gameCrud')
 const gameUi = require('./gameUi')
 
@@ -26,16 +26,16 @@ const onAllGames = function (event) {
   event.preventDefault()
   console.log('get all games')
 
-  const data = getFormFields(this)
-  gameCrud.allGames(data)
-    .then(gameUi.allGamesSuccess)
-    .catch(gameUi.allGamesFailure)
+  // const data = getFormFields(this)
+  // gameCrud.allGames(data)
+  //   .then(gameUi.allGamesSuccess)
+  //   .catch(gameUi.allGamesFailure)
 }
 
 const addHandlers = function () {
-  $('#new-game').on('submit', onNewGame)
+  $('#new-game').on('click', onNewGame)
   $('#sign-in').on('submit', onUpdateGame)
-  $('#all-games').on('submit', onAllGames)
+  $('#all-games').on('click', onAllGames)
 }
 
 module.exports = {

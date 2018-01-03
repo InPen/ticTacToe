@@ -3,6 +3,8 @@
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const authEvents = require('./auth/events.js')
+const gameEvents = require('./gameEvents.js')
+
 // How to properly require gameLogic???
 // const gameLogic = require('./gameLogic')
 
@@ -12,7 +14,7 @@ $(() => {
 
 $(() => {
   authEvents.addHandlers()
-  // gameLogic.addHandlers()
+  gameEvents.addHandlers()
 })
 
 // Game Logic begins
