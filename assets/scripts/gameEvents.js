@@ -33,7 +33,7 @@ const onAllGames = function (event) {
 }
 
 const addHandlers = function () {
-  $('#new-game').on('button', onNewGame)
+  $('#new-game').on('submit', onNewGame)
   $('#sign-in').on('submit', onUpdateGame)
   $('#all-games').on('submit', onAllGames)
 }
