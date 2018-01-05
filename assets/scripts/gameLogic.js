@@ -6,7 +6,7 @@
 // Game Logic begins
 let currentPlayer = 'x'
 let count = 0
-const board = ['', '', '', '', '', '', '', '', '']
+let board = ['', '', '', '', '', '', '', '', '']
 
 // Mama function that sorta exports all other functions
 // we need to name it and change how it's beind defined
@@ -21,7 +21,6 @@ $('.box').click(function (event) {
     updateCell()
     checkWinner()
     switchPlayer()
-    // checkDraw()
   }
 })
 
@@ -40,16 +39,6 @@ const updateCell = function () {
   }
 }
 
-// const checkDraw = function () {
-//   // if all spaces have been taken and there is no win then it's a draw
-//
-//   if (!($('.box').text() === '' && checkWinner)) {
-//     // end game
-//     $('.box').off('click')
-//     console.log("I'ts a draw")
-//   }
-// }
-
 const switchPlayer = function () {
   if (currentPlayer === 'x') {
     // instead of using console, try to target cell using jquery
@@ -64,7 +53,7 @@ const switchPlayer = function () {
 
 // check the board for a winner
 const checkWinner = function () {
-// x                x   = true              x
+  // x                x   = true              x
   if (// check for vertical wins
     (board[0] === currentPlayer && board[3] === currentPlayer && board[6] === currentPlayer) ||
   (board[1] === currentPlayer && board[4] === currentPlayer && board[7] === currentPlayer) ||
@@ -76,15 +65,28 @@ const checkWinner = function () {
   // check for diagonal wins
   (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
   (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
-    $('.box').off('click')
+    clearBoard()
     console.log('you win!')
+    // if all spaces have been taken and there is no win then it's a draw
   } else if (count === 9) {
     console.log('DRAW')
-    $('.box').off('click')
-  // if all spaces have been taken and there is no win then it's a draw
+    clearBoard()
   } else {
     console.log('no one won and game continues')
   }
 }
 
-// module.exports = {checkDraw}
+const clearBoard = function () {
+  $('.gameboard').empty()
+}
+
+const resetGame = function () {
+  board = ['', '', '', '', '', '', '', '', '']
+  count = 0
+  currentPlayer = 'x'
+}
+$('#new-game').on('click', resetGame)
+
+module.exports = {
+  resetGame
+}
