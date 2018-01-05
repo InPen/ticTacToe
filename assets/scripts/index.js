@@ -90,15 +90,28 @@ const checkWinner = function () {
   // check for diagonal wins
   (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
   (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
-    $('.box').off('click')
+    endGame()
     console.log('you win!')
   } else if (count === 9) {
     console.log('DRAW')
-    $('.box').off('click')
+    endGame()
   // if all spaces have been taken and there is no win then it's a draw
   } else {
     console.log('no one won and game continues')
   }
 }
 
-// module.exports = {checkDraw}
+const endGame = function () {
+  if (board.over === true) {
+    board.cells = ''
+  }
+}
+
+const clearBoard = function (clearBoard) {
+  $('.gameboard').empty()
+}
+$('#new-game').on('click', clearBoard)
+
+module.exports = {
+  clearBoard
+}
