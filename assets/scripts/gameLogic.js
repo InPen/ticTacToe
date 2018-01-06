@@ -1,7 +1,7 @@
 'use strict'
-// const gameCrud = require('./gameCrud')
-// const gameUi = require('./gameUi')
-// const store = require('./store')
+const gameCrud = require('./gameCrud')
+const gameUi = require('./gameUi')
+const store = require('./store')
 
 // Game Logic begins
 let currentPlayer = 'x'

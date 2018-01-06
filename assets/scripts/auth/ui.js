@@ -2,12 +2,6 @@
 
 const store = require('../store')
 
-// how to prevent cp and log out from appearing when page loads
-const loadSuccess = function () {
-  $('.changepassword').hide()
-  $('.signout').hide()
-}
-
 const signUpSuccess = function (data) {
   $('.signup-message').text('Welcome! Please sign in')
   $('.signup').hide()
@@ -30,6 +24,7 @@ const signInSuccess = function (response) {
   $('.signup').hide()
   $('.changepassword').show()
   $('.signout').show()
+  $('.game-container').show()
   $('#sign-in').trigger('reset')
 }
 
@@ -59,6 +54,7 @@ const signOutSuccess = function () {
   $('.signup').show()
   $('.signin').show()
   $('#sign-in').trigger('reset')
+  $('.signout').hide()
   $('.game-container').hide()
   // console.log('signOut success ran. and nothing was returned')
 }
@@ -69,7 +65,6 @@ const signOutFailure = function () {
 }
 
 module.exports = {
-  loadSuccess,
   signUpSuccess,
   signUpFailure,
   signInSuccess,
