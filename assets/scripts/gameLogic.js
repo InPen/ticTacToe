@@ -66,7 +66,9 @@ const checkWinner = function () {
   (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
   (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
     clearBoard()
-    console.log('you win!')
+    $('#won').text(currentPlayer + ' Won!')
+    gameCrud.updateGame()
+    $('#user-message').text('Please press New Game button to continue playing')
     // if all spaces have been taken and there is no win then it's a draw
   } else if (count === 9) {
     console.log('DRAW')
