@@ -1,8 +1,28 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$baby-pink: #ffdce9;
+$hot-pink: #ff69b4;
+
+body {
+  background-color: $baby-pink;
+}
+
 .box {
-  border: 3px solid #000;
-  height: 40px;
-  width: 40px;
+  align-content: center;
+  border: 3px solid $hot-pink;
+  height: 150px;
+  width: 150px;
+}
+
+.class {
+  // float: left;
+}
+
+.title {
+  text-align: center;
+}
+
+.won {
+  // float: left;
 }

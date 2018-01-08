@@ -1,75 +1,123 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Tic Tac Toe</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Pan Dulce: Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="assets/styles/img/picado.png">
 
-    <body class="container-fluid">
-      <!-- beginning of nav -->
-      <nav>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Instructions</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Change Password</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sign Out</a>
-            </li>
-        </ul>
-      </nav>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      <!-- end of nav -->
-      <h1>Tic Tac Toe: Pan Dulce Edition</h1>
+<body class="container-fluid">
+  <img src="assets/styles/img/picado.png" alt="Papel Picado">
+  <h1 class="title">Tic Tac Toe: Pan Dulce Edition</h1>
 
-      <div id="turn">
-        <h2>Who's turn is it:</h2>
-        <p id="turn-message"></p>
-    </div>
-      <div  id="won">
-        <h2>Who Won:</h2>
-        <p id="won-message"></p>
+  <!-- beginning of nav -->
+  <nav>
+
+    <!-- sign up -->
+    <div class="signup">
+      <form id="sign-up">
+          <h2>Sign up!</h2>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+          <button type="submit" class="btn btn-default">Sign Up!</button>
+      </form>
+      <p class="signup-message"></p>
     </div>
 
-      <!-- Board game -->
-      <div class="container game">
-        <div class="col-s-6">
-        <!-- first row -->
-        <div class="row">
-          <div class="col-xs-4 box gameboard" id="cellZero" data-index=0></div>
-          <div class="col-xs-4 box gameboard" id="cellOne" data-index=1></div>
-          <div class="col-xs-4 box gameboard" id="cellTwo" data-index=2></div>
-        </div>
-        <!-- end of first row -->
-        <!-- second row -->
-        <div class="row">
-          <div class="col-xs-4 box gameboard" id="cellThree" data-index=3></div>
-          <div class="col-xs-4 box gameboard" id="cellFour" data-index=4></div>
-          <div class="col-xs-4 box gameboard" id="cellFive" data-index=5></div>
-        </div>
-        <!-- end of second row -->
-        <!-- third row -->
-        <div class="row">
-          <div class="col-xs-4 box gameboard" id="cellSix" data-index=6></div>
-          <div class="col-xs-4 box gameboard" id="cellSeven" data-index=7></div>
-          <div class="col-xs-4 box gameboard" id="cellEight" data-index=8></div>
-        </div>
-      </div>
-        <!-- end of third row -->
-        <!-- End of board game -->
+    <!-- sign in -->
+    <div class="signin">
+      <form id="sign-in">
+          <h2>Sign in!</h2>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="Password">
+          <button type="submit" class="btn btn-default">Sign In!</button>
+      </form>
+      <p class="signin-message"></p>
+    </div>
 
-        <!-- New game button -->
-        <button type="button" class="btn btn-primary btn-lg">New Game</button>
-        <!-- end new game button  -->
+      <!-- change password -->
+      <div class="changepassword">
+        <form id="change-password">
+            <h2>Change Password!</h2>
+            <input type="password" name="passwords[old]" placeholder="Old Password">
+            <input type="password" name="passwords[new]" placeholder="New Password">
+            <button type="submit" class="btn btn-default">Change Password</button>
+        </form>
+        <p class="cp-message"></p>
       </div>
-    </body>
+
+      <!-- log out -->
+      <div class="signout">
+        <form id="sign-out">
+            <h2>Sign Out!</h2>
+            <button type="submit" class="btn btn-default">Sign Out</button>
+        </form>
+        <p class="signout-message"></p>
+      </div>
+  </nav>
+
+  <!-- end of nav -->
+
+  <div class="instructions">
+    <h2 id="user-message"></h2>
+  </div>
+
+  <div class="err-message">
+    <h2 id="err"></h2>
+  </div>
+
+  <div class="turn">
+    <h2 id="turn"></h2>
+  </div>
+
+  <div class="won">
+    <h2 id="won"></h2>
+  </div>
+
+  <!-- Board game -->
+  <div class="game-container">
+    <div class="col-s-6">
+      <!-- first row -->
+      <div class="row">
+        <div class="col-xs-4 box gameboard" id="cellZero" data-index=0></div>
+        <div class="col-xs-4 box gameboard" id="cellOne" data-index=1></div>
+        <div class="col-xs-4 box gameboard" id="cellTwo" data-index=2></div>
+      </div>
+      <!-- end of first row -->
+      <!-- second row -->
+      <div class="row">
+        <div class="col-xs-4 box gameboard" id="cellThree" data-index=3></div>
+        <div class="col-xs-4 box gameboard" id="cellFour" data-index=4></div>
+        <div class="col-xs-4 box gameboard" id="cellFive" data-index=5></div>
+      </div>
+      <!-- end of second row -->
+      <!-- third row -->
+      <div class="row">
+        <div class="col-xs-4 box gameboard" id="cellSix" data-index=6></div>
+        <div class="col-xs-4 box gameboard" id="cellSeven" data-index=7></div>
+        <div class="col-xs-4 box gameboard" id="cellEight" data-index=8></div>
+      </div>
+    </div>
+    <!-- end of third row -->
+    <!-- End of board game -->
+
+    <!-- New game button -->
+    <button id="new-game" class="btn btn-success">New Game</button>
+    <!-- end new game button  -->
+
+    <!-- GET all games button  -->
+    <button id="all-games" class="btn btn-success">Games Played</button>
+    <!-- end of GET all games button  -->
+
+  </div>
+</body>
+
 </html>
