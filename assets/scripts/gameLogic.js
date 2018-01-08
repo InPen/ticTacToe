@@ -86,8 +86,9 @@ const resetGame = function () {
   board = ['', '', '', '', '', '', '', '', '']
   count = 0
   currentPlayer = 'x'
+  $('#won').on('click', resetGame)
+  $('#new-game').on('click', resetGame)
 }
-$('#new-game').on('click', resetGame)
 
 module.exports = {
   resetGame
