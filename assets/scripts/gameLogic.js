@@ -6,7 +6,6 @@ const gameCrud = require('./gameCrud')
 // Game Logic begins
 let currentPlayer = 'x'
 let count = 0
-const board = ['', '', '', '', '', '', '', '', '']
 
 let game = {
   gameId: 0,
@@ -19,6 +18,7 @@ let game = {
 }
 
 game.board[4] = currentPlayer
+console.log(game.board[4], 'Hi')
 // Mama function that sorta exports all other functions
 // we need to name it and change how it's beind defined
 // so we can call on it on our CRUD actions
@@ -84,16 +84,16 @@ const switchPlayer = function () {
 const checkWinner = function () {
   // x                x   = true              x
   if (// check for vertical wins
-    (board[0] === currentPlayer && board[3] === currentPlayer && board[6] === currentPlayer) ||
-  (board[1] === currentPlayer && board[4] === currentPlayer && board[7] === currentPlayer) ||
-  (board[2] === currentPlayer && board[5] === currentPlayer && board[8] === currentPlayer) ||
+    (game.board[0] === currentPlayer && game.board[3] === currentPlayer && game.board[6] === currentPlayer) ||
+  (game.board[1] === currentPlayer && game.board[4] === currentPlayer && game.board[7] === currentPlayer) ||
+  (game.board[2] === currentPlayer && game.board[5] === currentPlayer && game.board[8] === currentPlayer) ||
   // check for horizontal wins
-  (board[0] === currentPlayer && board[1] === currentPlayer && board[2] === currentPlayer) ||
-  (board[3] === currentPlayer && board[4] === currentPlayer && board[5] === currentPlayer) ||
-  (board[6] === currentPlayer && board[7] === currentPlayer && board[8] === currentPlayer) ||
+  (game.board[0] === currentPlayer && game.board[1] === currentPlayer && game.board[2] === currentPlayer) ||
+  (game.board[3] === currentPlayer && game.board[4] === currentPlayer && game.board[5] === currentPlayer) ||
+  (game.board[6] === currentPlayer && game.board[7] === currentPlayer && game.board[8] === currentPlayer) ||
   // check for diagonal wins
-  (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
-  (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
+  (game.board[0] === currentPlayer && game.board[4] === currentPlayer && game.board[8] === currentPlayer) ||
+  (game.board[2] === currentPlayer && game.board[4] === currentPlayer && game.board[6] === currentPlayer)) {
     game.over = true
     endGame()
     $('#won').text(currentPlayer + ' Won!')
