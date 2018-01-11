@@ -17,13 +17,24 @@ let game = {
   }
 }
 
-game.board[4] = currentPlayer
-console.log(game.board[4], 'Hi')
+const switchPlayer = function () {
+  if (currentPlayer === 'x') {
+    currentPlayer = 'o'
+    console.log('x')
+    // instead of using console, try to target cell using jquery
+  } else {
+    currentPlayer = 'x'
+    console.log('o')
+  }
+}
+
 // Mama function that sorta exports all other functions
 // we need to name it and change how it's beind defined
 // so we can call on it on our CRUD actions
 $('.box').on('click', function (event) {
   count++
+  game.board[$(this).attr('data-index')] = currentPlayer
+  switchPlayer()
   console.log('board is ', game.board)
   if ($(event.target).text()) {
     console.log('ALREADY SELECTED')
@@ -68,17 +79,6 @@ $('.box').on('click', function (event) {
 //     console.log('board[position] is', board[position])
 //   }
 // }
-
-const switchPlayer = function () {
-  if (currentPlayer === 'x') {
-    currentPlayer = 'o'
-    console.log('x')
-    // instead of using console, try to target cell using jquery
-  } else {
-    currentPlayer = 'x'
-    console.log('o')
-  }
-}
 
 // check the board for a winner
 const checkWinner = function () {
