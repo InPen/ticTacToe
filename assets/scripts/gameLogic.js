@@ -16,8 +16,7 @@ let game = {
   }
 }
 
-function switchPlayer () {
-  const x = game.player.currentPlayer
+const switchPlayer = function () {
   if (game.player.currentPlayer === 'x') {
     game.player.currentPlayer = 'o'
     console.log('x')
@@ -26,7 +25,6 @@ function switchPlayer () {
     game.player.currentPlayer = 'x'
     console.log('o')
   }
-  return x
 }
 
 // Mama function that sorta exports all other functions
