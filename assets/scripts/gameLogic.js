@@ -1,29 +1,28 @@
 'use strict'
-const gameCrud = require('./gameCrud')
+// const gameCrud = require('./gameCrud')
 // const gameUi = require('./gameUi')
 // const store = require('./store')
 
 // Game Logic begins
-let currentPlayer = 'x'
 let count = 0
 
 let game = {
   gameId: 0,
   board: ['', '', '', '', '', '', '', '', ''],
   over: false,
-  currentPlayer: {
+  player: {
     currentPlayer: 'x',
     currentPlayerid: 0
   }
 }
 
 const switchPlayer = function () {
-  if (currentPlayer === 'x') {
-    currentPlayer = 'o'
+  if (game.player.currentPlayer === 'x') {
+    game.player.currentPlayer = 'o'
     console.log('x')
     // instead of using console, try to target cell using jquery
   } else {
-    currentPlayer = 'x'
+    game.player.currentPlayer = 'x'
     console.log('o')
   }
 }
@@ -32,17 +31,19 @@ const switchPlayer = function () {
 // we need to name it and change how it's beind defined
 // so we can call on it on our CRUD actions
 $('.box').on('click', function (event) {
-  count++
-  game.board[$(this).attr('data-index')] = currentPlayer
-  switchPlayer()
-  console.log('board is ', game.board)
-  if ($(event.target).text()) {
-    console.log('ALREADY SELECTED')
-  } else {
-    $(event.target).text(currentPlayer)
-    // updateCell()
+  if (game.board[$(this).attr('data-index')] === '') {
+    const swPlayer = switchPlayer()
+    count++
     checkWinner()
-    switchPlayer()
+    // here is where array is receiving x or o value
+    game.board[$(this).attr('data-index')] = swPlayer
+    console.log(' is ' + game.player.currentPlayer)
+    console.log('board is ', game.board)
+
+    $(event.target).text(swPlayer)
+    // updateCell()
+  } else {
+    console.log('ALREADY SELECTED')
   }
 })
 
@@ -82,30 +83,32 @@ $('.box').on('click', function (event) {
 
 // check the board for a winner
 const checkWinner = function () {
+  console.log('checking for wins')
+  console.log('player:' + game.player.currentPlayer)
   // x                x   = true              x
   if (// check for vertical wins
-    (game.board[0] === currentPlayer && game.board[3] === currentPlayer && game.board[6] === currentPlayer) ||
-  (game.board[1] === currentPlayer && game.board[4] === currentPlayer && game.board[7] === currentPlayer) ||
-  (game.board[2] === currentPlayer && game.board[5] === currentPlayer && game.board[8] === currentPlayer) ||
+    (game.board[0] === game.player.currentPlayer && game.board[3] === game.player.currentPlayer && game.board[6] === game.player.currentPlayer) ||
+  (game.board[1] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[7] === game.player.currentPlayer) ||
+  (game.board[2] === game.player.currentPlayer && game.board[5] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
   // check for horizontal wins
-  (game.board[0] === currentPlayer && game.board[1] === currentPlayer && game.board[2] === currentPlayer) ||
-  (game.board[3] === currentPlayer && game.board[4] === currentPlayer && game.board[5] === currentPlayer) ||
-  (game.board[6] === currentPlayer && game.board[7] === currentPlayer && game.board[8] === currentPlayer) ||
+  (game.board[0] === game.player.currentPlayer && game.board[1] === game.player.currentPlayer && game.board[2] === game.player.currentPlayer) ||
+  (game.board[3] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[5] === game.player.currentPlayer) ||
+  (game.board[6] === game.player.currentPlayer && game.board[7] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
   // check for diagonal wins
-  (game.board[0] === currentPlayer && game.board[4] === currentPlayer && game.board[8] === currentPlayer) ||
-  (game.board[2] === currentPlayer && game.board[4] === currentPlayer && game.board[6] === currentPlayer)) {
+  (game.board[0] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
+  (game.board[2] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[6] === game.player.currentPlayer)) {
     game.over = true
-    endGame()
-    $('#won').text(currentPlayer + ' Won!')
+    $('#won').text(game.player.currentPlayer + ' Won!')
     $('#user-message').text('Please press New Game button to continue playing')
-    gameCrud.updateGame()
+    endGame()
+    // gameCrud.updateGame()
     // if all spaces have been taken and there is no win then it's a draw
   } else {
     game.over = true
     gameDraw()
     $('#won').text('It was a draw')
     $('#user-message').text('Please press New Game button to continue playing')
-    gameCrud.updateGame()
+    // gameCrud.updateGame()
   }
   // else {
   //   console.log('no one won and game continues')
@@ -116,7 +119,6 @@ const gameDraw = function () {
   if (count === 9) {
     console.log('DRAW function')
     game.over = true
-    endGame()
   }
 }
 
@@ -127,7 +129,7 @@ const gameDraw = function () {
 const endGame = function () {
   if (game.over === true) {
     console.log('Game is over')
-    game.board = ''
+    game.board = []
   }
 }
 
@@ -136,7 +138,7 @@ const resetGame = function () {
     gameId: 0,
     board: ['', '', '', '', '', '', '', '', ''],
     over: false,
-    currentPlayer: {
+    player: {
       currentPlayer: 'x',
       currentPlayerid: 0
     }
@@ -146,6 +148,10 @@ const resetGame = function () {
   $('#won').empty()
   $('#user-message').empty()
   count = 0
-  currentPlayer = 'x'
+  game.player.currentPlayer = 'x'
 }
 $('#new-game').on('click', resetGame)
+
+// module.exports {
+//   endGame
+// }
