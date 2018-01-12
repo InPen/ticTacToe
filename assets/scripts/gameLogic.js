@@ -38,7 +38,7 @@ $('.box').on('click', function (event) {
     console.log('board is ', game.board)
 
     $(event.target).text(game.player.currentPlayer)
-    // updateCell()
+    updateCell()
     count++
     checkWinner()
     switchPlayer()
@@ -67,19 +67,19 @@ $('.box').on('click', function (event) {
 // })
 
 // target cell user clicks on to switch turns
-// const updateCell = function () {
-//   // Get the position of the board that the user clicked
-//   const position = $(event.target).data('index')
-//   // position is saved on HTML data-index of element
-//   console.log('currentPlayer is: ', currentPlayer)
-//   // Add player token to board at the position they chose
-//   if (board[position] === 'x' || board[position] === 'o') {
-//   } else {
-//     board[position] = currentPlayer
-//     // instead of using console, try to target cell using jquery
-//     console.log('board[position] is', board[position])
-//   }
-// }
+const updateCell = function () {
+  // Get the position of the board that the user clicked
+  const position = $(event.target).data('index')
+  // position is saved on HTML data-index of element
+  console.log('game.player.currentPlayer is: ', game.player.currentPlayer)
+  // Add player token to board at the position they chose
+  if (game.board[position] === 'x' || game.board[position] === 'o') {
+  } else {
+    game.board[position] = game.player.currentPlayer
+    // instead of using console, try to target cell using jquery
+    console.log('board[position] is', game.board[position])
+  }
+}
 
 // check the board for a winner
 const checkWinner = function () {
