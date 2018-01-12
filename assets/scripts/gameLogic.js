@@ -19,11 +19,11 @@ let game = {
 const switchPlayer = function () {
   if (game.player.currentPlayer === 'x') {
     game.player.currentPlayer = 'o'
-    console.log('x')
+    console.log('game.player.currentPlayer is', game.player.currentPlayer)
     // instead of using console, try to target cell using jquery
   } else {
     game.player.currentPlayer = 'x'
-    console.log('o')
+    console.log('game.player.currentPlayer is', game.player.currentPlayer)
   }
 }
 
@@ -32,16 +32,16 @@ const switchPlayer = function () {
 // so we can call on it on our CRUD actions
 $('.box').on('click', function (event) {
   if (game.board[$(this).attr('data-index')] === '') {
-    const swPlayer = switchPlayer()
-    count++
-    checkWinner()
     // here is where array is receiving x or o value
-    game.board[$(this).attr('data-index')] = swPlayer
+    game.board[$(this).attr('data-index')] = game.player.currentPlayer
     console.log(' is ' + game.player.currentPlayer)
     console.log('board is ', game.board)
 
-    $(event.target).text(swPlayer)
+    $(event.target).text(game.player.currentPlayer)
     // updateCell()
+    count++
+    checkWinner()
+    switchPlayer()
   } else {
     console.log('ALREADY SELECTED')
   }
