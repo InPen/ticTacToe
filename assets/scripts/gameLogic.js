@@ -105,9 +105,9 @@ const checkWinner = function () {
     // if all spaces have been taken and there is no win then it's a draw
   } else {
     game.over = true
-    gameDraw()
     $('#won').text('It was a draw')
     $('#user-message').text('Please press New Game button to continue playing')
+    gameDraw()
     // gameCrud.updateGame()
   }
   // else {
