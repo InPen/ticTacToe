@@ -20,10 +20,13 @@ const signInSuccess = function (response) {
   store.user = response.user
   console.log(store.user.token)
   // console.log('signIn success ran. data is :', response)
+  $('#messages').trigger('reset')
+  $('.game-container').trigger('reset')
   $('.signin').hide()
   $('.signup').hide()
   $('.changepassword').show()
   $('.signout').show()
+  $('#messages').show()
   $('.game-container').show()
   $('#sign-in').trigger('reset')
 }
@@ -51,20 +54,20 @@ const signOutSuccess = function () {
   store.user = null
   $('.signout-message').text('')
   $('.changepassword').hide()
+  $('#messages').trigger('reset')
+  $('#messages').hide()
+  $('.game-container').trigger('reset')
+  $('.game-container').hide()
+  $('.signout').trigger('reset')
+  $('.signout').hide()
   $('.signup').show()
   $('#sign-in').trigger('reset')
   $('.signin').show()
-  $('.signout').hide()
-  $('#messages').trigger('reset')
-  $('#messages').hide()
-  $('.game-container').hide()
-  $('.game-container').trigger('reset')
-  $('.signout').trigger('reset')
   // console.log('signOut success ran. and nothing was returned')
 }
 
 const signOutFailure = function () {
-  $('.signout-message').text('Unable to sign out')
+  $('.signout-message').text('Unable to sign out, please try again')
   // console.log('signOut failure ran. error is :', error)
 }
 
