@@ -3,7 +3,7 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  $('.signup-message').text('Welcome! Please sign in')
+  $('.signup-message').text('')
   $('.signup').hide()
   $('#sign-up').trigger('reset')
   // console.log(data)
@@ -16,7 +16,7 @@ const signUpFailure = function () {
 }
 
 const signInSuccess = function (response) {
-  $('.signin-message').text('Let\'s PLAY!')
+  $('.signin-message').text('')
   store.user = response.user
   console.log(store.user.token)
   // console.log('signIn success ran. data is :', response)
@@ -49,13 +49,16 @@ const changePasswordFailure = function () {
 
 const signOutSuccess = function () {
   store.user = null
-  $('.signout-message').text('Bye!')
+  $('.signout-message').text('')
   $('.changepassword').hide()
   $('.signup').show()
-  $('.signin').show()
   $('#sign-in').trigger('reset')
+  $('.signin').show()
   $('.signout').hide()
+  $('#messages').trigger('reset')
+  $('#messages').hide()
   $('.game-container').hide()
+  $('.game-container').trigger('reset')
   $('.signout').trigger('reset')
   // console.log('signOut success ran. and nothing was returned')
 }
