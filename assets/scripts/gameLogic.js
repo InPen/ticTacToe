@@ -1,26 +1,47 @@
 'use strict'
-const gameCrud = require('./gameCrud')
-const gameUi = require('./gameUi')
-const store = require('./store')
+// const gameCrud = require('./gameCrud')
+// const gameUi = require('./gameUi')
+// const store = require('./store')
 
 // Game Logic begins
-let currentPlayer = 'x'
 let count = 0
-let board = ['', '', '', '', '', '', '', '', '']
+
+let game = {
+  gameId: 0,
+  board: ['', '', '', '', '', '', '', '', ''],
+  over: false,
+  player: {
+    currentPlayer: 'x',
+    currentPlayerid: 0
+  }
+}
+
+const switchPlayer = function () {
+  if (game.player.currentPlayer === 'x') {
+    game.player.currentPlayer = 'o'
+    console.log('game.player.currentPlayer is', game.player.currentPlayer)
+    // instead of using console, try to target cell using jquery
+  } else {
+    game.player.currentPlayer = 'x'
+    console.log('game.player.currentPlayer is', game.player.currentPlayer)
+  }
+}
 
 // Mama function that sorta exports all other functions
-// we need to name it and change how it's beind defined
-// so we can call on it on our CRUD actions
-$('.box').click(function (event) {
-  count++
-  console.log('board is ', board)
-  if ($(event.target).text()) {
-    console.log('ALREADY SELECTED')
-  } else {
-    $(event.target).text(currentPlayer)
+$('.box').on('click', function (event) {
+  if (game.board[$(this).attr('data-index')] === '') {
+    // here is where array is receiving x or o value
+    game.board[$(this).attr('data-index')] = game.player.currentPlayer
+    console.log(' is ' + game.player.currentPlayer)
+    console.log('board is ', game.board)
+
+    $(event.target).text(game.player.currentPlayer)
     updateCell()
+    count++
     checkWinner()
     switchPlayer()
+  } else {
+    console.log('SPACE IS ALREADY SELECTED')
   }
 })
 
@@ -29,67 +50,79 @@ const updateCell = function () {
   // Get the position of the board that the user clicked
   const position = $(event.target).data('index')
   // position is saved on HTML data-index of element
-  console.log('currentPlayer is: ', currentPlayer)
+  console.log('game.player.currentPlayer is: ', game.player.currentPlayer)
   // Add player token to board at the position they chose
-  if (board[position] === 'x' || board[position] === 'o') {
+  if (game.board[position] === 'x' || game.board[position] === 'o') {
   } else {
-    board[position] = currentPlayer
+    game.board[position] = game.player.currentPlayer
     // instead of using console, try to target cell using jquery
-    console.log('board[position] is', board[position])
-  }
-}
-
-const switchPlayer = function () {
-  if (currentPlayer === 'x') {
-    // instead of using console, try to target cell using jquery
-    console.log('x')
-    currentPlayer = 'o'
-    // instead of using console, try to target cell using jquery
-    console.log('o')
-  } else {
-    currentPlayer = 'x'
+    console.log('board[position] is', game.board[position])
   }
 }
 
 // check the board for a winner
 const checkWinner = function () {
+  console.log('checking for wins')
+  console.log('player:' + game.player.currentPlayer)
   // x                x   = true              x
   if (// check for vertical wins
-    (board[0] === currentPlayer && board[3] === currentPlayer && board[6] === currentPlayer) ||
-  (board[1] === currentPlayer && board[4] === currentPlayer && board[7] === currentPlayer) ||
-  (board[2] === currentPlayer && board[5] === currentPlayer && board[8] === currentPlayer) ||
+    (game.board[0] === game.player.currentPlayer && game.board[3] === game.player.currentPlayer && game.board[6] === game.player.currentPlayer) ||
+  (game.board[1] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[7] === game.player.currentPlayer) ||
+  (game.board[2] === game.player.currentPlayer && game.board[5] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
   // check for horizontal wins
-  (board[0] === currentPlayer && board[1] === currentPlayer && board[2] === currentPlayer) ||
-  (board[3] === currentPlayer && board[4] === currentPlayer && board[5] === currentPlayer) ||
-  (board[6] === currentPlayer && board[7] === currentPlayer && board[8] === currentPlayer) ||
+  (game.board[0] === game.player.currentPlayer && game.board[1] === game.player.currentPlayer && game.board[2] === game.player.currentPlayer) ||
+  (game.board[3] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[5] === game.player.currentPlayer) ||
+  (game.board[6] === game.player.currentPlayer && game.board[7] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
   // check for diagonal wins
-  (board[0] === currentPlayer && board[4] === currentPlayer && board[8] === currentPlayer) ||
-  (board[2] === currentPlayer && board[4] === currentPlayer && board[6] === currentPlayer)) {
-    clearBoard()
-    $('#won').text(currentPlayer + ' Won!')
-    gameCrud.updateGame()
+  (game.board[0] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[8] === game.player.currentPlayer) ||
+  (game.board[2] === game.player.currentPlayer && game.board[4] === game.player.currentPlayer && game.board[6] === game.player.currentPlayer)) {
+    game.over = true
+    $('#won').text(game.player.currentPlayer + ' Won!')
     $('#user-message').text('Please press New Game button to continue playing')
-    // if all spaces have been taken and there is no win then it's a draw
-  } else if (count === 9) {
-    console.log('DRAW')
-    clearBoard()
+    endGame()
+    // gameCrud.updateGame()
   } else {
-    console.log('no one won and game continues')
+    // if all spaces have been taken and there is no win then it's a draw
+    game.over = true
+    gameDraw()
+    // gameCrud.updateGame()
+  }
+  // else {
+  //   console.log('no one won and game continues')
+  // }
+}
+
+const gameDraw = function () {
+  if (count === 9) {
+    console.log('DRAW function')
+    $('#won').text('It was a draw')
+    $('#user-message').text('Please press New Game button to continue playing')
+    game.over = true
   }
 }
 
-const clearBoard = function () {
-  $('.gameboard').empty()
+const endGame = function () {
+  if (game.over === true) {
+    console.log('Game is over')
+    game.board = []
+  }
 }
 
 const resetGame = function () {
-  board = ['', '', '', '', '', '', '', '', '']
+  game = {
+    gameId: 0,
+    board: ['', '', '', '', '', '', '', '', ''],
+    over: false,
+    player: {
+      currentPlayer: 'x',
+      currentPlayerid: 0
+    }
+  }
+  $('.box').empty()
+  $('.game-container').removeClass('hide')
+  $('#won').empty()
+  $('#user-message').empty()
   count = 0
-  currentPlayer = 'x'
-  $('#won').on('click', resetGame)
-  $('#new-game').on('click', resetGame)
+  game.player.currentPlayer = 'x'
 }
-
-module.exports = {
-  resetGame
-}
+$('#new-game').on('click', resetGame)
