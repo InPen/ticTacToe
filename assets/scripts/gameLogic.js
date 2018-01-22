@@ -102,11 +102,9 @@ const checkWinner = function () {
     $('#user-message').text('Please press New Game button to continue playing')
     endGame()
     // gameCrud.updateGame()
-    // if all spaces have been taken and there is no win then it's a draw
   } else {
+    // if all spaces have been taken and there is no win then it's a draw
     game.over = true
-    $('#won').text('It was a draw')
-    $('#user-message').text('Please press New Game button to continue playing')
     gameDraw()
     // gameCrud.updateGame()
   }
@@ -118,6 +116,8 @@ const checkWinner = function () {
 const gameDraw = function () {
   if (count === 9) {
     console.log('DRAW function')
+    $('#won').text('It was a draw')
+    $('#user-message').text('Please press New Game button to continue playing')
     game.over = true
   }
 }
