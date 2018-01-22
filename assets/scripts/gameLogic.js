@@ -28,8 +28,6 @@ const switchPlayer = function () {
 }
 
 // Mama function that sorta exports all other functions
-// we need to name it and change how it's beind defined
-// so we can call on it on our CRUD actions
 $('.box').on('click', function (event) {
   if (game.board[$(this).attr('data-index')] === '') {
     // here is where array is receiving x or o value
@@ -43,28 +41,9 @@ $('.box').on('click', function (event) {
     checkWinner()
     switchPlayer()
   } else {
-    console.log('ALREADY SELECTED')
+    console.log('SPACE IS ALREADY SELECTED')
   }
 })
-
-// $('.box').on('click', function () {
-//   if (game.board === '') {
-//     $('.box').text(currentPlayer)
-//     game.board.splice(currentPlayer)
-//     console.log(game.board)
-//     checkWinner()
-//     count++
-//     gameDraw()
-//     gameCrud.updateGame(0)
-//     updateCell()
-//     switchPlayer()
-//   } else if (game.board !== '') {
-//     console.log('ALREADY SELECTED')
-//     $('#user-message').text('That space has already been taken')
-//   } else {
-//     $('#user-message').text('Press New Game button')
-//   }
-// })
 
 // target cell user clicks on to switch turns
 const updateCell = function () {
@@ -122,10 +101,6 @@ const gameDraw = function () {
   }
 }
 
-// const clearBoard = function () {
-//   $('.gameboard').empty()
-// }
-
 const endGame = function () {
   if (game.over === true) {
     console.log('Game is over')
@@ -151,7 +126,3 @@ const resetGame = function () {
   game.player.currentPlayer = 'x'
 }
 $('#new-game').on('click', resetGame)
-
-// module.exports {
-//   endGame
-// }
