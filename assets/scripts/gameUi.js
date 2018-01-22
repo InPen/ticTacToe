@@ -4,7 +4,8 @@ const store = require('./store')
 
 const newGameSuccess = function (data) {
   store.game = data.game
-  // console.log(data)
+  console.log('this game is ', data)
+  $('.game-container').trigger('reset')
 }
 
 const newGameFailure = function () {

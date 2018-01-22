@@ -9,7 +9,8 @@ const newGame = function (data) {
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    }
+    },
+    data
   })
 }
 
@@ -26,7 +27,8 @@ const updateGame = function (data) {
 // !might be using `'/games?over=true'` wrong
 const allGames = function () {
   return $.ajax({
-    url: config.apiOrigin + '/games?over=true',
+    url: config.apiOrigin + ' /games',
+    // might be '/games?over=true'
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
